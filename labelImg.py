@@ -210,8 +210,8 @@ class MainWindow(QMainWindow, WindowMixin):
         self.file_dock.setFeatures(QDockWidget.DockWidgetFloatable)
 
         self.dock_features = QDockWidget.DockWidgetClosable | QDockWidget.DockWidgetFloatable
-        self.dock.setFeatures(self.dock.features() ^ self.dock_features)
-
+        self.dock.setFeatures(self.dock.features() ^ int(self.dock_features))
+        
         # Actions
         action = partial(new_action, self)
         quit = action(get_str('quit'), self.close,
@@ -1357,7 +1357,7 @@ class MainWindow(QMainWindow, WindowMixin):
             target_dir_path = ustr(default_open_dir_path)
         self.last_open_dir = target_dir_path
         self.import_dir_images(target_dir_path)
-        self.default_save_dir = target_dir_path
+        self.default_save_dir = target_dir_path 
         if self.file_path:
             self.show_bounding_box_from_annotation_file(file_path=self.file_path)
 
